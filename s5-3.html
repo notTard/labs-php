@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Операции с числами</title>
+</head>
+<body>
+    <h2>Операции с числами</h2>
+    <form action="#" method="post" id="numberForm">
+        <label for="number">Введите N:</label>
+        <input type="text" name="number" id="number" required>
+        
+        <label for="operation">Выберите операцию:</label>
+        <select name="operation" id="operation" required>
+            <option value="even">Четные числа</option>
+            <option value="odd">Нечетные числа</option>
+            <option value="prime">Простые числа</option>
+            <option value="composite">Составные числа</option>
+        </select>
+        
+        <button type="button" onclick="getNumbers()">Получить числа</button>
+    </form>
+    
+    <div id="result"></div>
+
+    <script>
+        function getNumbers() {
+            var form = document.getElementById('numberForm');
+            var formData = new FormData(form);
+
+            // Отправляем данные на сервер (в этом случае не реальный сервер, так что просто для примера)
+            fetch('s5-3.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerHTML = data;
+            })
+            .catch(error => console.error('Ошибка:', error));
+        }
+    </script>
+</body>
+</html>
